@@ -1,0 +1,13 @@
+body { margin: 0; font: inherit; color: inherit; }
+main { width: min(100%, 760px); margin: auto; padding: 18px; box-sizing: border-box; }
+section { border: 1px solid #9995; border-radius: 14px; padding: 16px; margin-top: 16px; }
+h1 { font-size: 1.5rem; } h2 { font-size: 1.1rem; }
+button, input { font: inherit; padding: 10px; border: 1px solid #9996; border-radius: 8px; }
+button { margin: 4px 4px 4px 0; background: #8881; color: inherit; cursor: pointer; }
+button:disabled { opacity: .45; cursor: default; }
+video, audio, progress { width: 100%; margin-top: 12px; }
+video { max-height: 340px; } output { padding-left: 8px; }
+.clip-inputs { display: flex; gap: 12px; margin: 12px 0; }
+label { display: grid; gap: 5px; flex: 1; min-width: 0; }
+input { width: 100%; box-sizing: border-box; }
+@media (max-width: 420px) { main { padding: 10px; } section { padding: 12px; } }

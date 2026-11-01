@@ -1,0 +1,65 @@
+{
+  "schema_version": 7,
+  "module_id": "dev.example.node_compat",
+  "version": "1.0.0",
+  "api_version": "1",
+  "min_app_version": "0.1.57",
+  "name": {
+    "zh-CN": "Node 风格模块示例"
+  },
+  "author": "FireflyToolbox",
+  "license": "MIT",
+  "platforms": [
+    "windows",
+    "android"
+  ],
+  "permissions": [],
+  "network": {
+    "hosts": []
+  },
+  "limits": {
+    "input_bytes": 1048576,
+    "output_bytes": 4194304,
+    "timeout_ms": 3000,
+    "heap_bytes": 67108864
+  },
+  "tools": [
+    {
+      "id": "dev.example.node_compat.main",
+      "name": {
+        "zh-CN": "路径摘要"
+      },
+      "description": {
+        "zh-CN": "使用 Node 风格的 Buffer 与 path 浏览器实现，显示文件名字节数和 Base64"
+      },
+      "category": "示例模块",
+      "icon": "code",
+      "tags": [
+        "npm",
+        "摘要"
+      ],
+      "aliases": [
+        "node",
+        "hash"
+      ],
+      "entry": "index.html",
+      "runtime": "browser",
+      "input_schema": null,
+      "output_schema": null,
+      "ui": {
+        "kind": "web",
+        "script": "main.js",
+        "style": "style.css"
+      },
+      "actions": [
+        {
+          "id": "open",
+          "label": {
+            "zh-CN": "打开工具"
+          }
+        }
+      ]
+    }
+  ],
+  "resources": []
+}

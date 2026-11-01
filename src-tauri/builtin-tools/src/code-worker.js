@@ -1,0 +1,2 @@
+import {transformCode} from './code-engine.js'
+self.onmessage=async({data})=>{try{self.postMessage({type:'done',text:await transformCode(data.language,data.action,data.source,data.options)})}catch(error){const location=error.loc?.start??error.loc??(error.line?{line:error.line,column:error.col}:null);self.postMessage({type:'error',message:('代码无法处理：'+(Number.isFinite(location?.line)?'第 '+location.line+' 行，第 '+(Number(location.column??0)+1)+' 列。 ':'')+(error.message||'请检查语法。')).slice(0,4000)})}}

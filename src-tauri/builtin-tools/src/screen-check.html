@@ -1,0 +1,75 @@
+<div id="stage" class="stage">
+  <canvas id="cv" class="cv"></canvas>
+
+  <div id="hint" class="hint">
+    <b id="hintName"></b>
+    <span id="hintTip"></span>
+  </div>
+
+  <div id="bar" class="bar">
+    <button id="btnPrev" class="ico" type="button" aria-label="上一项" title="上一项（←）">‹</button>
+    <div class="meta">
+      <span id="metaName">—</span>
+      <span id="metaCount">0 / 0</span>
+    </div>
+    <button id="btnNext" class="ico" type="button" aria-label="下一项" title="下一项（→ / 空格 / 点击画面）">›</button>
+    <button id="btnAuto" class="pill" type="button" title="自动巡演（A）">自动</button>
+    <button id="btnCfg" class="pill" type="button" title="检测设置（O）">设置</button>
+  </div>
+
+  <div id="prog" class="prog"></div>
+
+  <section id="panel" class="panel" hidden>
+    <header class="panel-h">
+      <b>检测设置</b>
+      <button id="btnClose" class="x" type="button" aria-label="关闭设置">✕</button>
+    </header>
+
+    <div class="row">
+      <span>自动切换</span>
+      <div class="seg" data-key="autoMs">
+        <button type="button" data-v="3000">3s</button>
+        <button type="button" data-v="5000">5s</button>
+        <button type="button" data-v="8000">8s</button>
+        <button type="button" data-v="15000">15s</button>
+      </div>
+    </div>
+
+    <div class="row">
+      <span>渐变抖动</span>
+      <div class="seg" data-key="dither">
+        <button type="button" data-v="1">开</button>
+        <button type="button" data-v="0">关</button>
+      </div>
+    </div>
+
+    <div class="row">
+      <span>提示文字</span>
+      <div class="seg" data-key="hint">
+        <button type="button" data-v="1">显示</button>
+        <button type="button" data-v="0">隐藏</button>
+      </div>
+    </div>
+
+    <div class="row col">
+      <span>测试范围</span>
+      <div class="chips" data-key="groups">
+        <button type="button" data-g="color">纯色</button>
+        <button type="button" data-g="ramp">渐变灰阶</button>
+        <button type="button" data-g="sharp">锐度几何</button>
+        <button type="button" data-g="motion">动态</button>
+      </div>
+    </div>
+
+    <p class="note">点击画面或按空格切换下一项，← → 前后翻页，A 自动巡演，O 开关设置。退出全屏请按 Esc 或使用宿主返回手势。</p>
+  </section>
+
+  <div id="intro" class="intro" hidden>
+    <div class="intro-card">
+      <b>屏幕坏点检测</b>
+      <p>点击画面切换下一项 · ← → 前后翻页 · A 自动巡演 · O 打开设置</p>
+      <p class="dim">共 21 项图案。检测前请把屏幕亮度调到平时使用的档位，关闭护眼模式与色彩滤镜，并尽量在暗环境下观察亮点与漏光。</p>
+      <button id="btnStart" type="button">开始检测</button>
+    </div>
+  </div>
+</div>

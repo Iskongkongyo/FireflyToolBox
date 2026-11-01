@@ -1,0 +1,4 @@
+[[permission]]
+identifier = "splash-commands"
+description = "Allows the startup window to reveal the main application window"
+commands.allow = ["finish_splash", "show_splash"]

@@ -1,0 +1,2 @@
+import {hiddenImage} from './hiddenimage-data.js'
+self.onmessage=({data})=>{try{const front=data.front instanceof Uint8ClampedArray?data.front:new Uint8ClampedArray(data.front),back=data.back instanceof Uint8ClampedArray?data.back:new Uint8ClampedArray(data.back),pixels=hiddenImage(front,back,data.options);self.postMessage({result:{pixels}},[pixels.buffer])}catch(e){self.postMessage({error:e.message})}}

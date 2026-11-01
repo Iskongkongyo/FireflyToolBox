@@ -1,0 +1,12 @@
+[build]
+target-dir = "target-check"
+
+[env]
+# Wry's Android Java IPC otherwise trusts the top-level URL for every frame.
+# Intercept registration synchronously, before the first document is loaded.
+WRY_RUSTWEBVIEW_CLASS_EXTENSION = { value = """
+override fun addJavascriptInterface(obj: Any, name: String) {
+    if (name == "ipc") MainFrameBridge.installIpc(this, obj)
+    else super.addJavascriptInterface(obj, name)
+}
+""", force = true }

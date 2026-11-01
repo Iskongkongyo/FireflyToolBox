@@ -1,0 +1,21 @@
+[workspace]
+members = ["crates/toolbox-core", "crates/toolbox-storage", "src-tauri"]
+resolver = "2"
+
+[workspace.package]
+edition = "2021"
+license = "MIT"
+version = "1.0.0"
+
+[profile.dev]
+debug = 0
+incremental = false
+
+[profile.dev.build-override]
+debug = 0
+
+[profile.release]
+strip = "symbols"
+
+[patch.crates-io]
+rquickjs-sys = { path = "vendor/rquickjs-sys" }

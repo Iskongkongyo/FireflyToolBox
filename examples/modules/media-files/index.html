@@ -1,0 +1,26 @@
+<main>
+  <h1><img src="{{resource:assets/check.svg}}" width="28" height="28" alt=""> 媒体与大文件示例</h1>
+  <section>
+    <h2>独立资源</h2>
+    <p>从包内加载 WASM，在 Worker 中计算 21 + 21。</p>
+    <button id="wasm" type="button">运行 WASM</button>
+    <output id="wasm-result"></output>
+  </section>
+  <section>
+    <h2>文件处理</h2>
+    <button id="open" type="button">选择文件</button>
+    <p id="file-name">尚未选择文件</p>
+    <video id="video" controls playsinline hidden></video>
+    <audio id="audio" controls hidden></audio>
+    <p>音视频使用受限文件地址预览，处理时每次读写最多 1 MiB。</p>
+    <button id="copy" type="button" disabled>分块复制并保存</button>
+    <div class="clip-inputs">
+      <label>开始秒数<input id="start" type="number" value="0" min="0" step="0.1"></label>
+      <label>结束秒数<input id="end" type="number" value="5" min="0" step="0.1"></label>
+    </div>
+    <button id="clip" type="button" disabled>截取 PCM WAV</button>
+    <button id="cancel" type="button" disabled>取消处理</button>
+    <progress id="progress" max="1" value="0"></progress>
+    <p id="status" role="status"></p>
+  </section>
+</main>

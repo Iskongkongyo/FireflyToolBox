@@ -1,0 +1,12 @@
+<div id="pixelate-editor" hidden>
+  <div class="pixelate-canvas-wrap"><canvas id="pixelate-canvas" aria-label="拖拽或触摸选择原图像素化区域"></canvas></div>
+  <div class="actions"><button id="pixelate-reset" disabled>全图</button></div>
+  <p class="hint">默认处理全图。拖拽或触摸框选区域，选区外不应用像素化；预览缩小显示，处理使用原图像素。</p>
+  <details><summary>精确选区（原图像素）</summary><div class="grid pixelate-coordinates">
+    <label>左侧 X<input id="pixelate-left" data-region-field type="number" min="0" step="1" value="0"></label>
+    <label>顶部 Y<input id="pixelate-top" data-region-field type="number" min="0" step="1" value="0"></label>
+    <label>宽度<input id="pixelate-width" data-region-field type="number" min="1" step="1" value="1"></label>
+    <label>高度<input id="pixelate-height" data-region-field type="number" min="1" step="1" value="1"></label>
+  </div></details>
+</div>
+<style>.pixelate-canvas-wrap{display:grid;place-items:center;padding:10px;background:var(--bg);border:1px solid var(--border);border-radius:12px;max-height:560px;overflow:auto}.pixelate-canvas-wrap canvas{display:block;max-width:100%;width:auto;height:auto;max-height:530px;touch-action:none}.pixelate-coordinates{margin-top:12px}#pixelate-editor{margin-bottom:16px}#pixelate-editor details{margin:12px 0}@media(max-width:600px){.pixelate-canvas-wrap{max-height:420px}.pixelate-canvas-wrap canvas{max-height:390px}.pixelate-coordinates{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.pixelate-coordinates input{padding:10px 7px;font-size:12px}}</style>

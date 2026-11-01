@@ -1,0 +1,107 @@
+/* The editing surfaces own their scrolling; file/settings panels stay compact. */
+.creative-tool .status:empty{display:none}
+.creative-tool .workspace-options>summary{cursor:pointer;min-height:44px;margin:0;display:flex;align-items:center;gap:8px;font-weight:650;color:var(--accent);list-style:none}
+.creative-tool .workspace-options>summary::-webkit-details-marker{display:none}
+.creative-tool .workspace-options>summary::before{content:'›';font-size:22px;line-height:1;flex:none;transition:transform .15s}
+.creative-tool .workspace-options[open]>summary::before{transform:rotate(90deg)}
+.creative-tool .workspace-options{border-top:1px solid var(--border);margin:8px 0 12px}
+.creative-tool .workspace-file-actions{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px}
+.creative-tool .workspace-file-actions button{min-width:0;white-space:normal;min-height:44px}
+.creative-tool .workspace-scrollbar{flex-wrap:nowrap;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:thin;min-width:0;max-width:100%;padding-bottom:4px}
+.creative-tool .workspace-scrollbar button{flex:0 0 auto;min-height:44px;white-space:nowrap}
+.creative-tool .workspace-scrollbar::-webkit-scrollbar{height:3px}
+.creative-tool .workspace-scrollbar::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+.creative-tool .workspace-short-label{display:none}
+.creative-tool .workspace-quick-actions{gap:8px;margin:8px 0}
+.creative-tool .workspace-quick-actions button{min-height:44px}
+.creative-tool .workspace-help{font-size:11px;line-height:1.7;margin-bottom:0}
+.creative-tool .drawing-view-controls{flex-wrap:nowrap;gap:6px}
+.creative-tool .drawing-view-controls>strong{min-width:0;font-size:11px;font-weight:500;overflow-wrap:anywhere;color:var(--muted)}
+.creative-tool .drawing-view-controls>.actions{gap:5px;flex:none}
+.creative-tool .drawing-view-controls button{min-height:44px;min-width:40px;padding:8px 10px}
+.creative-tool .drawing-view-controls span{min-width:40px}
+.drawing-quick-settings{display:grid;grid-template-columns:minmax(0,2fr) minmax(70px,1fr);gap:12px;margin:10px 0}
+.drawing-quick-settings label{margin:0}
+.drawing-quick-settings input{height:44px}
+.drawing-tool .drawing-settings{grid-template-columns:repeat(2,minmax(0,1fr));margin-top:8px}
+.drawing-tool .drawing-stage{height:clamp(360px,calc(var(--firefly-viewport-height,800px)*.74),760px);touch-action:none;overscroll-behavior:contain;scrollbar-width:thin}
+.drawing-surface{min-width:100%;min-height:100%;display:grid;place-items:center}
+.mindmap-tool .mindmap-controls{padding:12px 16px;margin-bottom:12px}
+.mindmap-controls>.workspace-quick-actions{margin-top:0}
+.mindmap-controls>.workspace-options{margin-bottom:0}
+.mindmap-tool .mindmap-stage{height:clamp(380px,calc(var(--firefly-viewport-height,800px)*.76),760px);overscroll-behavior:contain;scrollbar-width:thin}
+.mindmap-tool .mindmap-stage #map{min-width:0}
+.mindmap-tool .mindmap-editor{border:1px solid var(--border);margin:0;min-width:0;padding:12px 16px}
+.mindmap-editor>summary{overflow:hidden}
+.mindmap-editor #selected-title{font-weight:500;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1;min-width:0}
+.mindmap-editor-body{padding-top:8px}
+.markdown-tool .markdown-file-card{margin-bottom:12px;padding:6px 16px;border:1px solid var(--border)}
+.markdown-file-card[open]{padding-bottom:16px}
+.workspace-filename{font-size:11px;color:var(--muted);font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0;margin-left:auto}
+.markdown-tool .markdown-file-row{padding-top:8px}
+.markdown-tool .markdown-editor-card{margin-top:12px}
+.markdown-tool .markdown-topbar{flex-wrap:nowrap;gap:8px;margin-bottom:10px}
+.markdown-tool #views{gap:4px;min-width:0}
+.markdown-tool #views button{min-height:44px;padding:8px 12px}
+.markdown-topbar>#save{min-height:44px;flex:none}
+.markdown-tool-row{display:flex;gap:12px;align-items:center;margin-bottom:10px}
+.markdown-tool-row .markdown-formatting{display:flex;align-items:center;gap:8px;flex:none;min-width:0}
+.markdown-tool-row .markdown-history-actions{flex:none;gap:4px;margin:0}
+.markdown-tool-row .markdown-history-actions button{min-width:40px;min-height:44px;padding:8px;font-size:20px;line-height:1}
+.markdown-tool-row .markdown-toolbar{flex:none;max-width:none;margin:0;padding:0;border:0;background:none;gap:5px;overflow:visible}
+.markdown-tool-row .markdown-toolbar button{min-height:44px;background:var(--soft);padding:8px 12px}
+.markdown-tool .markdown-tool-row .markdown-preview-controls{flex:none;gap:12px;flex-wrap:nowrap;margin:0}
+.markdown-tool-row .markdown-preview-controls label{white-space:nowrap}
+.markdown-tool-row .markdown-preview-controls button{min-height:44px;white-space:nowrap}
+.markdown-tool .markdown-document-state{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-top:10px}
+.markdown-document-state .hint{margin:0;font-size:11px}
+.markdown-tool .markdown-panes textarea,.markdown-tool .markdown-rendered{height:clamp(360px,calc(var(--firefly-viewport-height,800px)*.68),800px);min-height:360px}
+@media(min-width:801px){
+ .markdown-tool .markdown-file-card{padding:16px}
+ .markdown-tool .markdown-file-card>summary{display:none}
+ .markdown-tool .markdown-file-row{display:grid;grid-template-columns:1fr;padding-top:0;gap:12px}
+ .markdown-tool .markdown-file-row>.markdown-filename-row{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:12px;margin:0}
+ .markdown-tool .markdown-file-row>.actions{width:100%;grid-template-columns:repeat(4,minmax(0,1fr));margin:0}
+}
+@media(max-width:800px){
+ .markdown-tool .markdown-tool-row{display:grid;grid-template-columns:minmax(0,1fr);gap:8px;overflow:visible;padding:0}
+ .markdown-tool-row .markdown-formatting{width:100%;gap:6px}
+ .markdown-tool-row .markdown-toolbar{flex:1;max-width:100%;overflow-x:auto;padding-bottom:4px}
+ .markdown-tool .markdown-tool-row .markdown-preview-controls{flex-wrap:wrap;gap:8px 12px}
+}
+@media(max-width:900px){
+ .mindmap-tool .mindmap-workspace{gap:10px}
+ .mindmap-tool .mindmap-editor{order:-1;padding:5px 12px}
+ .mindmap-editor[open]{padding-bottom:12px}
+ .mindmap-editor-body{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 12px}
+ .mindmap-editor-body>label:first-child,.mindmap-editor-body>.actions,.mindmap-editor-body>.hint{grid-column:1/-1}
+ .mindmap-editor-body>label{margin-bottom:8px}
+ .mindmap-tool .mindmap-map-card{padding:12px}
+}
+@media(max-width:600px){
+ .drawing-tool .drawing-controls,.markdown-tool .markdown-editor-card{padding:12px;margin-top:10px}
+ .creative-tool .workspace-quick-actions:not(.workspace-scrollbar) button{flex:1 1 auto;padding:8px 12px}
+ .creative-tool .workspace-scrollbar button{flex:0 0 auto;min-width:0;padding:8px 12px}
+ .drawing-tool .drawing-stage{height:clamp(360px,calc(var(--firefly-viewport-height,700px)*.72),680px)}
+ .creative-tool .drawing-view-controls button{padding:8px;min-width:38px}
+ .creative-tool .drawing-view-controls span{font-size:10px;min-width:36px}
+ .drawing-quick-settings{gap:10px;grid-template-columns:minmax(0,1fr) 76px;margin:8px 0}
+ .drawing-tool .drawing-tool-tabs{gap:5px}
+ .drawing-tool .drawing-secondary{gap:12px;margin:4px 0 12px}
+ .mindmap-tool .mindmap-controls{margin-top:10px;padding:10px 12px}
+ .mindmap-tool>section .workspace-quick-actions{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) minmax(0,1fr) 44px 44px;gap:6px;overflow:visible}
+ .mindmap-tool>section .workspace-quick-actions button{min-width:0;padding:8px;font-size:12px}
+ .mindmap-tool .workspace-full-label{display:none}
+ .mindmap-tool .workspace-short-label{display:inline}
+ .mindmap-tool #undo .workspace-short-label,.mindmap-tool #redo .workspace-short-label{font-size:20px;line-height:1}
+ .mindmap-tool .mindmap-stage{height:clamp(380px,calc(var(--firefly-viewport-height,700px)*.74),680px)}
+ .mindmap-editor-body{display:block}
+ .mindmap-editor textarea,.markdown-tool #source{font-size:16px}
+ .markdown-tool .markdown-file-card{margin-top:10px;padding:4px 12px}
+ .markdown-tool #views button{padding:8px 10px}
+ .markdown-topbar>#save{padding:8px 12px}
+ .markdown-tool .markdown-toolbar-hint{display:block;font-size:10px;margin:0 0 8px}
+ .markdown-tool .markdown-panes{gap:12px}
+ .markdown-tool .markdown-panes textarea,.markdown-tool .markdown-rendered{height:clamp(360px,calc(var(--firefly-viewport-height,700px)*.70),680px);min-height:360px;padding:12px}
+ .markdown-tool .pane-label{font-size:11px;margin-bottom:6px}
+}

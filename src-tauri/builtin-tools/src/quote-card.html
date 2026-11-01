@@ -1,0 +1,88 @@
+<div class="app">
+  <section class="stage" id="stage">
+    <div class="card-wrap">
+      <canvas id="card" width="1080" height="1440" role="img" aria-label="卡片预览"></canvas>
+    </div>
+    <div class="actions">
+      <button id="btnNext" class="btn primary" type="button">换一句</button>
+      <button id="btnSave" class="btn" type="button">保存图片</button>
+      <button id="btnFav" class="btn" type="button">收藏</button>
+      <button id="btnCopy" class="btn" type="button">复制文字</button>
+    </div>
+    <p class="size-hint" id="sizeHint">PNG · 1080 × 1440</p>
+    <p id="status" class="status" role="status" aria-live="polite"></p>
+  </section>
+
+  <aside class="panel">
+    <section class="block">
+      <header class="block-h">
+        <span>内容来源</span>
+        <button id="btnRandom" class="link" type="button">随机一切</button>
+      </header>
+      <div class="chips" id="srcChips"></div>
+      <div class="subchips" id="subChips" hidden></div>
+    </section>
+
+    <section class="block">
+      <header class="block-h"><span>模板</span></header>
+      <div class="themes" id="themeList"></div>
+    </section>
+
+    <section class="block">
+      <header class="block-h"><span>排版</span></header>
+      <div class="row">
+        <span class="k">字体</span>
+        <div class="seg" id="segFont">
+          <button type="button" data-v="auto">自动</button>
+          <button type="button" data-v="song">宋</button>
+          <button type="button" data-v="hei">黑</button>
+          <button type="button" data-v="kai">楷</button>
+        </div>
+      </div>
+      <div class="row">
+        <span class="k">比例</span>
+        <div class="seg" id="segRatio">
+          <button type="button" data-v="3-4">3:4</button>
+          <button type="button" data-v="9-16">9:16</button>
+          <button type="button" data-v="4-5">4:5</button>
+        </div>
+      </div>
+      <div class="row">
+        <span class="k">竖排文字</span>
+        <label class="switch">
+          <input type="checkbox" id="chkVertical">
+          <i></i>
+        </label>
+      </div>
+      <div class="row">
+        <span class="k">高清导出 2×</span>
+        <label class="switch">
+          <input type="checkbox" id="chkHi">
+          <i></i>
+        </label>
+      </div>
+    </section>
+
+    <section class="block">
+      <header class="block-h">
+        <span>自己写</span>
+        <button id="btnWrite" class="link" type="button">展开</button>
+      </header>
+      <div class="write" id="writeBox" hidden>
+        <textarea id="txt" rows="3" maxlength="220" placeholder="写下想做成长图的那句话…"></textarea>
+        <input id="who" maxlength="40" placeholder="署名 / 出处（可留空）">
+        <button id="btnApply" class="btn primary sm" type="button">生成卡片</button>
+      </div>
+    </section>
+
+    <section class="block">
+      <header class="block-h">
+        <span>收藏</span>
+        <span class="muted" id="favCount">空</span>
+      </header>
+      <div class="favs" id="favList"></div>
+    </section>
+
+    <p class="tip">按 R 也能换一句。内容来自一言、今日诗词、毒鸡汤、彩虹屁等公开接口，接口不稳时自动使用内置语料；导出为原图 PNG，可直接发朋友圈。</p>
+  </aside>
+</div>

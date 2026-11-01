@@ -1,0 +1,2 @@
+import {PRICE_SOURCES} from './price-data.js'
+export async function priceQuery(request,path,parse,signal){const failures=[];for(const origin of PRICE_SOURCES){if(signal.aborted)throw new DOMException('已取消','AbortError');try{const r=await request(origin+path,{signal});if(!r.ok)throw new Error(`HTTP ${r.status}`);const data=parse(await r.json());return{data,source:origin,fetched:new Date().toISOString()}}catch(e){if(signal.aborted||e.name==='AbortError')throw e;failures.push(e.message)}}throw new Error(`价格来源暂时不可用，请稍后重试。${failures[0]?'（'+failures[0].slice(0,100)+'）':''}`)}

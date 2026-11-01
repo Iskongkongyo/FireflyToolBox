@@ -1,0 +1,13 @@
+<main class="kinship-tool">
+<div class="kinship-workspace">
+<section class="card kinship-input-card" aria-labelledby="kinship-input-heading">
+<h2 id="kinship-input-heading">填写亲戚关系</h2>
+<div class="kinship-controls"><label>本人性别<select id="sex"><option value="-1">未指定</option><option value="1">男</option><option value="0">女</option></select></label><label>查询方式<select id="type"><option value="default">计算称呼</option><option value="chain">反查关系链</option></select></label></div>
+<label><span id="relation-label">对方与我的关系</span><input id="relation" maxlength="100" placeholder="如：爸爸的哥哥的儿子，或舅妈"></label>
+<div id="relation-builder"><p class="kinship-section-label">按顺序点选关系</p><div id="relations" class="kinship-relations"></div></div>
+<div class="actions kinship-edit-actions"><button id="undo" disabled>撤销最后一层</button><button id="clear" disabled>清空关系</button></div>
+<details class="kinship-advanced"><summary>更多查询方式</summary><div class="kinship-advanced-content"><label>相对于谁（可选）<input id="target" maxlength="100" placeholder="留空表示我，如：舅妈"></label><label class="check"><input id="reverse" type="checkbox">查看对方如何称呼我 / 相对对象</label><p class="hint">例如关系填“外婆”、相对对象填“舅妈”，可查询舅妈如何称呼外婆。</p></div></details>
+<div class="actions kinship-run-actions"><button id="calculate" class="primary" disabled>计算称呼</button><button id="cancel" hidden>取消</button></div><p id="status" class="status" role="status"></p>
+</section>
+<section class="card kinship-result-card" aria-labelledby="result-title"><div class="kinship-result-heading"><h2 id="result-title">查询结果</h2><button id="copy" disabled>复制结果</button></div><div id="kinship-empty" class="kinship-empty"><strong>亲戚关系，一步步算清楚</strong><p class="hint">输入称呼或点选关系，再点击计算按钮。</p></div><div id="results" hidden><div id="answers" class="kinship-answers"></div><p id="chain" class="hint"></p></div><p class="hint kinship-result-note">哥哥 / 弟弟、姐姐 / 妹妹区分长幼；未知条件可能产生多个结果，全部列出。地区习惯可能不同，结果供参考；最多查询 8 层关系，离线计算。</p></section>
+</div></main>

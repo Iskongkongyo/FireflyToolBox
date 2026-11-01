@@ -1,0 +1,1 @@
+Local HTTPS unit-test fixtures. The root is trusted only by the test client; it is never installed in the OS or added to production clients. The server key is test data and is not used by any deployed service.

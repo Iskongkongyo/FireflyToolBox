@@ -1,0 +1,385 @@
+:root {
+  --sc-accent: var(--accent, #35c08a);
+  --sc-ink: #f3f7f5;
+  --sc-dim: rgba(255, 255, 255, 0.66);
+  --sc-line: rgba(255, 255, 255, 0.14);
+  --sc-glass: rgba(14, 20, 19, 0.82);
+}
+
+* { box-sizing: border-box; }
+
+[hidden] { display: none !important; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: transparent;
+  overflow: hidden;
+  font-family: system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.stage {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.stage.idle { cursor: none; }
+
+.cv {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* ---------- 通用玻璃面板：始终使用深色玻璃，保证压在纯白/纯黑图案上都可读 ---------- */
+.hint,
+.bar,
+.panel,
+.intro-card {
+  color: var(--sc-ink);
+  background: var(--sc-glass);
+  border: 1px solid var(--sc-line);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.42);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* ---------- 提示条 ---------- */
+.hint {
+  position: absolute;
+  left: 50%;
+  bottom: 78px;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: calc(100% - 24px);
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  line-height: 1.45;
+  white-space: nowrap;
+  overflow: hidden;
+  pointer-events: none;
+  transition: opacity 0.28s ease;
+  z-index: 5;
+}
+
+.hint b {
+  flex: 0 0 auto;
+  font-weight: 600;
+  color: #fff;
+}
+
+.hint span {
+  color: var(--sc-dim);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hint.off { display: none !important; }
+
+/* ---------- 底部控制条 ---------- */
+.bar {
+  position: absolute;
+  left: 50%;
+  bottom: 16px;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px;
+  border-radius: 16px;
+  transition: opacity 0.28s ease;
+  z-index: 5;
+}
+
+.bar .ico {
+  width: 40px;
+  height: 40px;
+  padding: 0 0 3px;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  color: #eaf2ee;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.bar .ico:hover { background: rgba(255, 255, 255, 0.12); }
+.bar .ico:active { background: rgba(255, 255, 255, 0.2); }
+
+.bar .meta {
+  min-width: 92px;
+  padding: 0 4px;
+  text-align: center;
+  line-height: 1.32;
+}
+
+.bar .meta #metaName {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.bar .meta #metaCount {
+  display: block;
+  font-size: 11.5px;
+  color: rgba(255, 255, 255, 0.55);
+  font-variant-numeric: tabular-nums;
+}
+
+.pill {
+  flex: 0 0 auto;
+  height: 40px;
+  padding: 0 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.06);
+  color: #eaf2ee;
+  font-size: 12.5px;
+  font-family: inherit;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.pill:hover { background: rgba(255, 255, 255, 0.14); }
+
+.pill.on {
+  background: var(--sc-accent);
+  border-color: transparent;
+  color: #04241a;
+  font-weight: 600;
+}
+
+.stage.idle .bar,
+.stage.idle .hint,
+.stage.idle .prog {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ---------- 自动巡演进度线 ---------- */
+.prog {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 2px;
+  background: var(--sc-accent);
+  opacity: 0.55;
+  pointer-events: none;
+  transition: width 0.12s linear;
+  z-index: 4;
+}
+
+/* ---------- 设置面板 ---------- */
+.panel {
+  position: absolute;
+  right: 16px;
+  bottom: 72px;
+  width: min(342px, calc(100% - 32px));
+  padding: 12px 14px 14px;
+  border-radius: 18px;
+  font-size: 13px;
+  z-index: 6;
+}
+
+.panel-h {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 8px;
+}
+
+.panel-h b { font-size: 14px; font-weight: 600; }
+
+.panel-h .x {
+  width: 30px;
+  height: 30px;
+  border: 0;
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.panel .row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 7px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.panel .row > span {
+  flex: 0 0 auto;
+  font-size: 12.5px;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.panel .row.col {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+}
+
+.panel .row.col > span { align-self: flex-start; }
+
+.seg {
+  display: flex;
+  gap: 3px;
+  padding: 3px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.seg button {
+  padding: 5px 9px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 12px;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.seg button.on {
+  background: var(--sc-accent);
+  color: #04241a;
+  font-weight: 600;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.chips button {
+  padding: 5px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 12px;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.chips button.on {
+  border-color: var(--sc-accent);
+  background: rgba(53, 192, 138, 0.2);
+  color: #bff6e0;
+}
+
+.panel .note {
+  margin: 8px 0 0;
+  font-size: 11.5px;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* ---------- 首次进入的说明卡 ---------- */
+.intro {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 8;
+}
+
+.intro-card {
+  width: min(400px, 100%);
+  padding: 20px;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.intro-card b { font-size: 16px; }
+
+.intro-card p {
+  margin: 10px 0 0;
+  font-size: 12.5px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.74);
+}
+
+.intro-card p.dim { color: rgba(255, 255, 255, 0.45); }
+
+.intro-card button {
+  width: 100%;
+  height: 46px;
+  margin-top: 16px;
+  border: 0;
+  border-radius: 14px;
+  background: var(--sc-accent);
+  color: #04241a;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* ---------- 窄屏与触屏 ---------- */
+@media (max-width: 560px) {
+  .hint {
+    left: 12px;
+    right: 12px;
+    bottom: 78px;
+    transform: none;
+    flex-direction: column;
+    gap: 1px;
+    border-radius: 14px;
+    white-space: normal;
+    text-align: center;
+    font-size: 12.5px;
+    max-width: none;
+  }
+  .bar { gap: 4px; padding: 5px; }
+  .bar .meta { min-width: 74px; }
+  .bar .meta #metaName { font-size: 12px; }
+  .panel { left: 12px; right: 12px; bottom: 70px; width: auto; max-height: 68%; overflow-y: auto; }
+}
+
+@media (max-width: 400px) {
+  .bar { gap: 3px; padding: 4px; }
+  .bar .ico { width: 34px; height: 40px; font-size: 20px; }
+  .bar .meta { min-width: 58px; padding: 0 2px; }
+  .bar .meta #metaName { font-size: 11.5px; }
+  .bar .meta #metaCount { font-size: 10.5px; }
+  .pill { height: 40px; padding: 0 8px; font-size: 12px; }
+}
+
+/* 设置面板打开时让出空间，避免与提示条重叠 */
+.stage.panel-open .hint { display: none !important; }
+
+@media (pointer: coarse) {
+  .bar .ico { width: 46px; height: 46px; }
+  .pill { height: 46px; padding: 0 14px; }
+  .seg button { padding: 9px 12px; }
+  .chips button { padding: 8px 12px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hint, .bar, .prog { transition: none; }
+}

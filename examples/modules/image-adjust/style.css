@@ -1,0 +1,17 @@
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+body { margin: 0; padding: 24px; color: #244938; background: #f7faf6 url("{{asset:assets/dots.svg}}") repeat; font: 16px/1.5 system-ui, sans-serif; }
+.image-tool { width: 100%; min-width: 0; margin: 0; }
+.heading { display: flex; align-items: center; gap: 12px; margin-bottom: 6px; }
+.heading img { flex: none; }
+h1 { margin: 0; font-size: 28px; }
+p { margin: 0 0 18px; color: #547061; }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 18px; }
+button { padding: 10px 16px; border: 0; border-radius: 10px; color: #fff; background: #32775a; font: inherit; cursor: pointer; }
+button:disabled { opacity: .5; cursor: default; }
+.controls { display: grid; gap: 8px; max-width: 420px; margin-bottom: 18px; }
+.controls label:first-child { display: flex; justify-content: space-between; }
+.controls input[type="range"] { width: 100%; }
+.check { display: inline-flex; align-items: center; gap: 8px; }
+canvas { display: block; width: 100%; height: auto; max-height: 65vh; object-fit: contain; border: 1px solid #d5e5d9; border-radius: 12px; background: #e9f1e8; }
+#status { margin-top: 12px; min-height: 24px; }

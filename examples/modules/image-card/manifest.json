@@ -1,0 +1,64 @@
+{
+  "schema_version": 7,
+  "module_id": "dev.example.image_card",
+  "version": "1.0.0",
+  "api_version": "1",
+  "min_app_version": "0.1.57",
+  "name": {
+    "zh-CN": "图片卡片示例"
+  },
+  "author": "FireflyToolbox",
+  "license": "MIT",
+  "platforms": [
+    "windows",
+    "android"
+  ],
+  "permissions": [],
+  "network": {
+    "hosts": []
+  },
+  "limits": {
+    "input_bytes": 1048576,
+    "output_bytes": 4194304,
+    "timeout_ms": 15000,
+    "heap_bytes": 67108864
+  },
+  "tools": [
+    {
+      "id": "dev.example.image_card.main",
+      "name": {
+        "zh-CN": "图片卡片生成器"
+      },
+      "description": {
+        "zh-CN": "输入标题，预览并保存 PNG 图片"
+      },
+      "category": "图片工具",
+      "tags": [
+        "图片",
+        "PNG",
+        "Canvas"
+      ],
+      "aliases": [
+        "image card"
+      ],
+      "entry": "index.html",
+      "runtime": "browser",
+      "input_schema": null,
+      "output_schema": null,
+      "ui": {
+        "kind": "web",
+        "script": "main.js",
+        "style": "style.css"
+      },
+      "actions": [
+        {
+          "id": "open",
+          "label": {
+            "zh-CN": "打开工具"
+          }
+        }
+      ]
+    }
+  ],
+  "resources": []
+}

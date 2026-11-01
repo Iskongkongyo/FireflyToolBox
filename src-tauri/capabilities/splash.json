@@ -1,0 +1,7 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "splash",
+  "description": "启动画面允许显示、拖动窗口及完成启动",
+  "windows": ["splashscreen"],
+  "permissions": ["splash-commands", "core:window:allow-start-dragging"]
+}

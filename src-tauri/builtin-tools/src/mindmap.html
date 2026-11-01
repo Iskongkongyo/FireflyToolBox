@@ -1,0 +1,129 @@
+<div class="mp" id="mp" data-theme="light">
+
+  <header class="mbar">
+    <button class="ib" id="mp-menu" type="button" title="菜单：新建 / 模板 / 打开" aria-label="菜单"></button>
+
+    <div class="mtitle">
+      <input id="mp-name" type="text" value="未命名导图" spellcheck="false" autocomplete="off" aria-label="导图名称">
+      <span class="mdot" id="mp-dot" hidden title="尚未写入草稿"></span>
+    </div>
+
+    <div class="sp"></div>
+
+    <div class="grp">
+      <button class="ib" id="mp-undo" type="button" title="撤销 (Ctrl+Z)" aria-label="撤销"></button>
+      <button class="ib" id="mp-redo" type="button" title="重做 (Ctrl+Shift+Z)" aria-label="重做"></button>
+    </div>
+
+    <button class="ib" id="mp-aa" type="button" title="画布与导出设置" aria-label="画布与导出设置">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3.1"/><path d="M12 3.4v2.4M12 18.2v2.4M3.4 12h2.4M18.2 12h2.4M6 6l1.7 1.7M16.3 16.3L18 18M18 6l-1.7 1.7M7.7 16.3L6 18"/></svg>
+    </button>
+    <button class="ib wide" id="mp-export" type="button">导出</button>
+    <button class="ib" id="mp-panel-btn" type="button" title="节点面板" aria-label="节点面板"></button>
+  </header>
+
+  <div class="mmain">
+    <div class="stage" id="mp-stage">
+      <svg class="msvg" id="mp-svg" xmlns="http://www.w3.org/2000/svg">
+        <g id="mp-view">
+          <g id="mp-edges"></g>
+          <g id="mp-nodes"></g>
+        </g>
+      </svg>
+
+      <textarea id="mp-edit" spellcheck="false" autocomplete="off" hidden></textarea>
+
+      <div class="zoombar">
+        <button type="button" id="mp-zout" aria-label="缩小">−</button>
+        <button type="button" id="mp-zfit" title="适合窗口 (0)"><span id="mp-zval">100%</span></button>
+        <button type="button" id="mp-zin" aria-label="放大">+</button>
+      </div>
+
+      <div class="nodock" id="mp-dock" hidden>
+        <button type="button" data-act="child" title="添加子节点 (Tab)">子级</button>
+        <button type="button" data-act="sib" title="添加同级 (Enter)">同级</button>
+        <span class="nsep"></span>
+        <button type="button" data-act="color" title="节点配色">配色</button>
+        <button type="button" data-act="fold" title="折叠 / 展开">折叠</button>
+        <span class="nsep"></span>
+        <button type="button" data-act="del" class="danger" title="删除节点（含子节点）">删除</button>
+      </div>
+
+      <div class="hint" id="mp-hint"></div>
+      <div class="scrim" id="mp-scrim" hidden></div>
+    </div>
+
+    <aside class="ppanel" id="mp-panel">
+      <div class="shead">
+        <span class="st">属性</span>
+        <button class="ib sm" id="mp-close" type="button" aria-label="收起面板"></button>
+      </div>
+
+      <section class="pnode" id="mp-node-sec">
+        <h4>节点文字</h4>
+        <textarea id="mp-text" rows="2" spellcheck="false" placeholder="选中一个节点后可编辑"></textarea>
+        <div class="row2">
+          <button class="mini" id="mp-addchild" type="button">＋ 子节点</button>
+          <button class="mini" id="mp-addsib" type="button">＋ 同级</button>
+        </div>
+        <div class="row2">
+          <button class="mini" id="mp-fold" type="button">折叠分支</button>
+          <button class="mini danger" id="mp-del" type="button">删除节点</button>
+        </div>
+      </section>
+
+      <section>
+        <h4>分支配色</h4>
+        <div class="sw" id="mp-colors"></div>
+        <div class="seg" id="mp-scope">
+          <button type="button" data-v="node">仅本节点</button>
+          <button type="button" data-v="branch">整个分支</button>
+        </div>
+      </section>
+
+      <section>
+        <h4>画布</h4>
+        <div class="seg" id="mp-layout">
+          <button type="button" data-v="both">双向展开</button>
+          <button type="button" data-v="right">单向右展</button>
+        </div>
+        <div class="seg" id="mp-curve">
+          <button type="button" data-v="1">曲线连线</button>
+          <button type="button" data-v="0">直角连线</button>
+        </div>
+      </section>
+
+      <section>
+        <h4>文件</h4>
+        <div class="row2">
+          <button class="mini" id="mp-open" type="button">打开工程</button>
+          <button class="mini" id="mp-save" type="button">保存工程</button>
+        </div>
+        <button class="mini block" id="mp-new" type="button">新建空白导图</button>
+        <label class="chk"><input type="checkbox" id="mp-alpha"><span>导出透明背景</span></label>
+      </section>
+
+      <section>
+        <h4>快捷键</h4>
+        <p class="note">
+          双击 / F2 改文字 · Tab 子节点 · Enter 同级<br>
+          方向键切换节点 · Delete 删除 · 空格聚焦画布<br>
+          Ctrl+Z 撤销 · Ctrl+Shift+Z 重做 · Ctrl+S 保存工程<br>
+          拖动空白处平移 · 滚轮缩放 · 拖动节点到别的节点上改父级
+        </p>
+      </section>
+    </aside>
+  </div>
+
+  <div class="pop" id="mp-pop" hidden role="menu"></div>
+
+  <div class="mshade" id="mp-shade" hidden>
+    <div class="mcard" role="dialog" aria-modal="true" aria-labelledby="mp-qt">
+      <p class="mq" id="mp-qt">确定吗？</p>
+      <div class="macts">
+        <button class="mbtn" id="mp-cancel" type="button">取消</button>
+        <button class="mbtn primary" id="mp-ok" type="button">确定</button>
+      </div>
+    </div>
+  </div>
+</div>

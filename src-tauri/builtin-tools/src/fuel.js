@@ -1,0 +1,12 @@
+import {$,text,status,copyButton} from './common.js'
+import {loadState,saveState} from './life.js'
+import {chinaDay} from './network.js'
+import {PROVINCES,fuelData,priceText} from './price-data.js'
+import {priceQuery} from './price-runtime.js'
+import {session} from './image-runtime.js'
+export function mount({request,copyText,signal}){let copied='',shown=null;const job=session(signal,()=>{$('copy').disabled=job.busy||!copied}),cache=loadState('fuel.cache',{});for(const p of PROVINCES){const option=text('option',p);option.value=p;$('province').append(option)}const last=loadState('fuel.province','北京');$('province').value=PROVINCES.includes(last)?last:'北京'
+ function render(record,cached=false){const d=record.data;shown=record;copied=`${d.region}油价\n${d.items.map(v=>`${v.name}：${priceText(v.price)} 元/升`).join('\n')}\n数据更新时间：${d.updated||'未提供'}\n来源：${record.source}`;$('results').hidden=false;$('cached').hidden=!cached;$('region').textContent=d.region;$('updated').textContent=`数据更新时间：${d.updated||'来源未提供'}${d.date&&d.date!==chinaDay()?' · 不是今日更新':''}`;$('prices').replaceChildren(...d.items.map(v=>{const item=text('div','','quote-price');item.append(text('small',v.name),text('strong',priceText(v.price)),text('span','元/升','hint'));return item}));$('trend').hidden=!d.trend.next;$('trend').textContent=d.trend.next?`来源预计下次调整：${d.trend.next}${d.trend.direction?' · 预计'+d.trend.direction:''}${d.trend.change?' '+d.trend.change:''}`:'';$('source').textContent=`来源：${record.source} · 汽油价格网`;$('copy').disabled=false}
+ function cached(){const record=cache[$('province').value];if(record?.data?.region&&Array.isArray(record.data.items)&&record.data.trend){try{if(record.data.region.includes($('province').value))render(record,true)}catch{}}}
+ $('province').onchange=()=>{copied='';shown=null;$('results').hidden=true;$('copy').disabled=true;saveState('fuel.province',$('province').value);cached();status('')}
+ $('query').onclick=()=>void job.run(async current=>{const province=$('province').value;saveState('fuel.province',province);status('正在查询油价…');let result;try{result=await priceQuery(request,'/v2/fuel-price?'+new URLSearchParams({region:province}),v=>fuelData(v,province),current)}catch(e){if(shown&&!current.aborted)render(shown,true);throw e};if(current.aborted)return;cache[province]=result;saveState('fuel.cache',cache);render(result);status('油价已更新。')});$('cancel').onclick=()=>job.cancel();copyButton('copy',()=>copied,copyText);cached();return()=>{shown=null;job.dispose()}
+}

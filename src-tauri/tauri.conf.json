@@ -1,0 +1,30 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "流萤百宝箱",
+  "version": "1.0.0",
+  "identifier": "firefly.toolbox",
+  "build": {
+    "beforeDevCommand": "npm run dev",
+    "devUrl": "http://localhost:1420",
+    "beforeBuildCommand": "npm run build",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "label": "main",
+        "title": "流萤百宝箱",
+        "width": 1120,
+        "height": 760,
+        "minWidth": 320,
+        "minHeight": 520
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self'; script-src 'self' blob: 'wasm-unsafe-eval' http://tauri.localhost https://tauri.localhost http://localhost:1420; img-src 'self' blob: data: ff-file: http://ff-file.localhost https://ff-file.localhost http://127.0.0.1:* asset: http://asset.localhost https:; style-src 'self' 'unsafe-inline'; media-src 'self' blob: data: ff-file: http://ff-file.localhost https://ff-file.localhost http://127.0.0.1:* https:; font-src 'self' data: blob:; connect-src ff-work: http://ff-work.localhost https://ff-work.localhost blob: ipc: http://ipc.localhost ff-file: http://ff-file.localhost https://ff-file.localhost http://127.0.0.1:* https: wss:; frame-src 'self' https://piaofang.maoyan.com"
+    }
+  },
+  "bundle": {
+    "active": false
+  }
+}

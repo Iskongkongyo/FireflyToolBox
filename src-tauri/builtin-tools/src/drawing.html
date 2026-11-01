@@ -1,0 +1,166 @@
+<div class="db" id="db" data-theme="light">
+
+  <header class="bar">
+    <div class="grp">
+      <button class="ib" id="db-undo" type="button" title="撤销 (Ctrl+Z)" aria-label="撤销"></button>
+      <button class="ib" id="db-redo" type="button" title="重做 (Ctrl+Shift+Z)" aria-label="重做"></button>
+    </div>
+    <div class="grp zoom">
+      <button class="ib sm" id="db-zout" type="button" title="缩小 (-)" aria-label="缩小"></button>
+      <button class="ib zl" id="db-zfit" type="button" title="适合窗口 (0)" aria-label="缩放比例，点击适合窗口"><span id="db-zval">100%</span></button>
+      <button class="ib sm" id="db-zin" type="button" title="放大 (+)" aria-label="放大"></button>
+    </div>
+    <button class="ib" id="db-rotate" type="button" title="切换横版 / 竖版" aria-label="切换横版竖版"></button>
+    <div class="sp"></div>
+    <button class="ib wide" id="db-export" type="button">
+      <span class="lbl">导出</span>
+    </button>
+    <button class="ib" id="db-panel" type="button" title="属性面板" aria-label="属性面板"></button>
+  </header>
+
+  <div class="body">
+    <div class="rail" id="db-rail" role="toolbar" aria-label="绘图工具"></div>
+
+    <div class="stage">
+      <div class="wrap" id="db-wrap">
+        <canvas id="db-cv" aria-label="画布"></canvas>
+        <textarea id="db-txt" spellcheck="false" autocomplete="off" hidden></textarea>
+      </div>
+      <div class="hint" id="db-hint" aria-live="polite"></div>
+      <div class="stat" id="db-stat"></div>
+      <div class="scrim" id="db-scrim" hidden></div>
+    </div>
+
+    <aside class="panel" id="db-side">
+      <div class="shead">
+        <span class="st">属性</span>
+        <button class="ib sm" id="db-close" type="button" aria-label="收起面板"></button>
+      </div>
+
+      <section>
+        <h4>颜色</h4>
+        <div class="sw" id="db-colors"></div>
+        <label class="row">
+          <input type="color" id="db-color" value="#22282b">
+          <span class="lbl grow">自定义颜色</span>
+        </label>
+      </section>
+
+      <section>
+        <h4>笔触</h4>
+        <label class="row">
+          <span class="lbl">粗细</span>
+          <input type="range" id="db-width" min="1" max="48" step="1" value="4">
+          <output class="ov" id="db-wval">4</output>
+        </label>
+        <div class="row">
+          <span class="lbl">线条</span>
+          <div class="seg" id="db-dash">
+            <button type="button" data-v="0">实线</button>
+            <button type="button" data-v="1">虚线</button>
+          </div>
+        </div>
+        <div class="row">
+          <span class="lbl">填充</span>
+          <div class="seg" id="db-fill">
+            <button type="button" data-v="none">无</button>
+            <button type="button" data-v="soft">淡</button>
+            <button type="button" data-v="solid">实</button>
+          </div>
+        </div>
+        <label class="row">
+          <span class="lbl">字号</span>
+          <input type="range" id="db-fs" min="10" max="120" step="1" value="32">
+          <output class="ov" id="db-fsval">32</output>
+        </label>
+      </section>
+
+      <section>
+        <h4>选中对象</h4>
+        <div class="row2">
+          <button class="mini" id="db-front" type="button">置顶</button>
+          <button class="mini" id="db-back" type="button">置底</button>
+          <button class="mini" id="db-dup" type="button">复制</button>
+          <button class="mini danger" id="db-del" type="button">删除</button>
+        </div>
+        <label class="row" id="db-oprow" hidden>
+          <span class="lbl">底图浓度</span>
+          <input type="range" id="db-op" min="10" max="100" step="1" value="100">
+          <output class="ov" id="db-opval">100</output>
+        </label>
+      </section>
+
+      <section>
+        <h4>画板</h4>
+        <div class="sw board" id="db-bgs"></div>
+        <div class="row">
+          <span class="lbl">方向</span>
+          <div class="seg" id="db-orient">
+            <button type="button" data-v="land">横版</button>
+            <button type="button" data-v="port">竖版</button>
+          </div>
+        </div>
+        <label class="row">
+          <span class="lbl">网格</span>
+          <select id="db-grid">
+            <option value="dots">点阵</option>
+            <option value="lines">方格</option>
+            <option value="none">不显示</option>
+          </select>
+        </label>
+        <label class="row">
+          <span class="lbl">尺寸</span>
+          <select id="db-size"></select>
+        </label>
+        <div class="row2 tight">
+          <input id="db-w" type="number" min="200" max="6000" step="10" inputmode="numeric" aria-label="画板宽度">
+          <span class="x">×</span>
+          <input id="db-h" type="number" min="200" max="6000" step="10" inputmode="numeric" aria-label="画板高度">
+          <button class="mini" id="db-apply" type="button">应用</button>
+        </div>
+      </section>
+
+      <section>
+        <h4>文件</h4>
+        <div class="row2">
+          <button class="mini" id="db-open-img" type="button">导入底图</button>
+          <button class="mini" id="db-open-proj" type="button">打开项目</button>
+        </div>
+        <div class="row2">
+          <button class="mini" id="db-save-proj" type="button">保存项目</button>
+          <button class="mini danger" id="db-clear" type="button">清空画板</button>
+        </div>
+        <div class="row2">
+          <select id="db-fmt" aria-label="导出格式">
+            <option value="png">PNG 图片</option>
+            <option value="jpg">JPG 图片</option>
+            <option value="svg">SVG 矢量</option>
+          </select>
+          <select id="db-scale" aria-label="导出倍率">
+            <option value="2">2 倍</option>
+            <option value="1">1 倍</option>
+            <option value="3">3 倍</option>
+          </select>
+        </div>
+        <label class="chk">
+          <input type="checkbox" id="db-alpha">
+          <span>导出时透明背景</span>
+        </label>
+        <button class="mini main block" id="db-save" type="button">导出图片</button>
+        <p class="note" id="db-note">底图过大时不会随草稿保存，建议及时导出。</p>
+      </section>
+
+      <section>
+        <h4>快捷键</h4>
+        <p class="note">
+          空格 / 中键拖动平移，滚轮缩放，双指捏合缩放<br>
+          V 选择 · H 手型 · B 画笔 · M 荧光笔 · L 直线 · A 箭头<br>
+          R 矩形 · O 椭圆 · Y 三角 · D 菱形 · S 星形 · T 文字 · E 橡皮<br>
+          Ctrl+Z 撤销 · Ctrl+Shift+Z 重做 · Delete 删除 · Ctrl+S 导出
+        </p>
+      </section>
+    </aside>
+  </div>
+
+  <div class="toast" id="db-toast" role="status"></div>
+</div>

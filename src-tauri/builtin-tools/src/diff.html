@@ -1,0 +1,119 @@
+<div id="diff" class="diff split">
+  <section id="inputView" class="input-view">
+    <div class="editors">
+      <div class="editor" id="editorLeft">
+        <header class="ed-head">
+          <span class="tag old">原</span>
+          <b class="name" id="nameLeft">粘贴文本</b>
+          <span class="meta" id="metaLeft">空</span>
+          <button class="mini" id="fillLeft" type="button">选择文件</button>
+        </header>
+        <div class="ed-body">
+          <p class="hint" id="hintLeft">把文件拖到这里，或直接粘贴文本</p>
+          <textarea id="taLeft" spellcheck="false" autocapitalize="off" autocomplete="off"></textarea>
+        </div>
+      </div>
+
+      <div class="editor" id="editorRight">
+        <header class="ed-head">
+          <span class="tag new">新</span>
+          <b class="name" id="nameRight">粘贴文本</b>
+          <span class="meta" id="metaRight">空</span>
+          <button class="mini" id="fillRight" type="button">选择文件</button>
+        </header>
+        <div class="ed-body">
+          <p class="hint" id="hintRight">把文件拖到这里，或直接粘贴文本</p>
+          <textarea id="taRight" spellcheck="false" autocapitalize="off" autocomplete="off"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="input-actions">
+      <button id="btnSample" class="btn ghost" type="button">载入示例</button>
+      <button id="btnSwap" class="btn ghost" type="button">左右交换</button>
+      <button id="btnClear" class="btn ghost" type="button">清空</button>
+      <span class="grow"></span>
+      <button id="btnCompare" class="btn primary wide" type="button">开始对比</button>
+    </div>
+
+    <p class="tip">支持 UTF-8 / GBK 编码的文本文件，也可以直接粘贴。Ctrl / ⌘ + Enter 快速对比；内容只在本机处理，不会上传。</p>
+  </section>
+
+  <section id="resultView" class="result-view" hidden>
+    <header class="bar">
+      <div class="seg" id="segView">
+        <button data-view="split" type="button">并排</button>
+        <button data-view="unified" type="button">单栏</button>
+      </div>
+
+      <div class="stats">
+        <span class="st add" id="statAdd">+0</span>
+        <span class="st del" id="statDel">−0</span>
+        <span class="st chg" id="statChg">0 处</span>
+        <span class="st sim" id="statSim">100%</span>
+      </div>
+
+      <div class="nav">
+        <button id="btnPrev" class="ico" type="button" aria-label="上一处差异">↑</button>
+        <span id="navPos" class="pos">0 / 0</span>
+        <button id="btnNext" class="ico" type="button" aria-label="下一处差异">↓</button>
+      </div>
+
+      <span class="grow"></span>
+
+      <div class="bar-actions">
+        <button id="btnEdit" class="btn ghost sm" type="button">编辑</button>
+        <button id="btnUndoMerge" class="btn ghost sm" type="button" disabled>撤销合并</button>
+        <button id="btnCopy" class="btn ghost sm" type="button">复制差异</button>
+        <button id="btnSave" class="btn ghost sm" type="button">保存差异</button>
+        <details id="contentExport" class="content-export"><summary class="btn ghost sm">导出内容</summary><div class="content-export-menu"><button type="button" data-export="copy-left">复制旧内容</button><button type="button" data-export="copy-right">复制新内容</button><button type="button" data-export="save-left">另存旧内容</button><button type="button" data-export="save-right">另存新内容</button></div></details>
+      </div>
+    </header>
+
+    <div class="opts">
+      <label class="chk"><input type="checkbox" id="optCase"><i></i><span>忽略大小写</span></label>
+      <label class="chk"><input type="checkbox" id="optSpace"><i></i><span>忽略空白</span></label>
+      <label class="chk"><input type="checkbox" id="optBlank"><i></i><span>忽略空行</span></label>
+      <span class="sep"></span>
+      <label class="chk"><input type="checkbox" id="optSync"><i></i><span>同步滚动</span></label>
+      <label class="chk"><input type="checkbox" id="optWrap"><i></i><span>自动换行</span></label>
+      <label class="chk"><input type="checkbox" id="optCvd"><i></i><span>色弱友好</span></label>
+    </div>
+
+    <div id="emptyState" class="empty" hidden>
+      <span class="ok">✓</span>
+      <span id="emptyText">两边内容完全一致，没有发现差异</span>
+    </div>
+
+    <div class="panes">
+      <div class="pane" id="paneLeft">
+        <header class="pane-head">
+          <span class="tag old">原</span>
+          <b id="headLeft">原文件</b>
+        </header>
+        <div class="pane-body" id="bodyLeft"></div>
+      </div>
+      <div class="pane-slot" id="paneRightWrap">
+        <div class="pane" id="paneRight">
+          <header class="pane-head">
+            <span class="tag new">新</span>
+            <b id="headRight">新文件</b>
+          </header>
+          <div class="pane-body" id="bodyRight"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <p id="status" class="status" role="status" aria-live="polite"></p>
+  <dialog id="mergeDialog" class="merge-dialog" aria-labelledby="mergeTitle">
+    <div class="merge-shell">
+      <header class="merge-header"><h2 id="mergeTitle">合并差异</h2><span id="mergePosition"></span><button id="mergePrev" type="button" class="btn ghost sm">上一个</button><button id="mergeNext" type="button" class="btn ghost sm">下一个</button><button id="mergeClose" type="button" class="ico" aria-label="关闭合并弹窗">×</button></header>
+      <div class="merge-columns">
+        <section class="merge-side merge-old"><h3>旧内容 <small id="mergeOldRange"></small></h3><pre id="mergeOldText" tabindex="0"></pre><button id="mergeToNew" class="btn merge-old-action" type="button">合并到新内容 →</button></section>
+        <section class="merge-side merge-new"><h3>新内容 <small id="mergeNewRange"></small></h3><pre id="mergeNewText" tabindex="0"></pre><button id="mergeToOld" class="btn merge-new-action" type="button">← 合并到旧内容</button></section>
+      </div>
+      <p class="merge-note">仅覆盖当前差异块，不会直接写入原文件；合并后可撤销，或通过“导出内容”另存。</p>
+    </div>
+  </dialog>
+</div>

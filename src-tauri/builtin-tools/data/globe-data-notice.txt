@@ -1,0 +1,13 @@
+Offline globe data for FireflyToolbox
+
+Geometry: world-atlas 2.0.2, countries-110m.json (Natural Earth 4.1.0).
+https://github.com/topojson/world-atlas
+Label coordinates and name fallback: Natural Earth vector v5.1.2, ne_110m_admin_0_countries.geojson, NAME_ZH, NAME_EN, ISO_A2_EH, LABEL_X, LABEL_Y.
+https://github.com/nvkelso/natural-earth-vector/blob/v5.1.2/geojson/ne_110m_admin_0_countries.geojson
+Chinese short display names use the build environment's Intl.DisplayNames (zh-CN); common search aliases are maintained locally.
+
+Natural Earth data is public domain:
+https://www.naturalearthdata.com/about/terms-of-use/
+world-atlas is redistributed under its ISC license, included with this bundle.
+
+This is a coarse browsing dataset, not an exhaustive administrative atlas or a surveying/navigation service. Small islands and shorelines may be omitted at 1:110m scale.

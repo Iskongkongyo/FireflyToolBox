@@ -1,0 +1,25 @@
+{
+  "source": "https://www.ooccrr.com/zh/image-ocr/",
+  "source_name": "OOCCRR 图片文字识别",
+  "integration_reference": "用户提供的图片文字识别.html",
+  "models": [
+    {
+      "name": "ppocr-det.bin",
+      "source": "https://cdn.ooccrr.com/models/ocr_det_v6_tiny_r1.onnx",
+      "size": 1777111,
+      "sha256": "aea9e0cc4d6e054ffdb15e02001fd3c98c206a7bd310fa77126575a24d395ed3"
+    },
+    {
+      "name": "ppocr-rec.bin",
+      "source": "https://cdn.ooccrr.com/models/ocr_rec_v6_small_r1.onnx",
+      "size": 21133444,
+      "sha256": "d5f942dfd99a6e3392114df4ac20d2fe00f95ef510b7f10032abd6a740396ad6"
+    },
+    {
+      "name": "ppocr-keys.json",
+      "source": "https://cdn.ooccrr.com/models/rec_keys_v6_small_r1.json",
+      "size": 131073,
+      "sha256": "46f800890c516f8a4e9e9d690f1ef9dc8d36782333463363d80307d572acb8be"
+    }
+  ]
+}

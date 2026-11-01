@@ -1,0 +1,8 @@
+import {COMMON_CURRENCIES,convertAmount} from './exchange-data.js'
+export const DAILY_RATES_URL='https://api.frankfurter.dev/v2/rates?base=CNY'
+export function cnyRates(value){if(!Array.isArray(value)||!value.length||value.length>500)throw new Error('来源未返回有效的人民币汇率列表。');const rates=new Map();for(const row of value){if(row?.base!=='CNY')throw new Error('来源返回的基准币种不是人民币，已停止展示。');if(!/^[A-Z]{3}$/.test(row.quote)||row.quote==='CNY'||typeof row.rate!=='number'||!Number.isFinite(row.rate)||row.rate<=0||!Number.isFinite(1/row.rate)||!/^\d{4}-\d{2}-\d{2}$/.test(row.date))continue;const previous=rates.get(row.quote);if(!previous||previous.date<row.date)rates.set(row.quote,{code:row.quote,rate:row.rate,date:row.date})}if(!rates.size)throw new Error('来源没有可用的外币参考汇率。');return [...rates.values()].sort((a,b)=>a.code.localeCompare(b.code))}
+const display=typeof Intl.DisplayNames==='function'?new Intl.DisplayNames(['zh-CN'],{type:'currency'}):null
+export function currencyName(code){try{return COMMON_CURRENCIES[code]||display?.of(code)||code}catch{return code}}
+export function rateFigures(row){return{outward:row.rate.toLocaleString('zh-CN',{maximumFractionDigits:8}),inward:convertAmount('100',1/row.rate,2)}}
+export function filterCnyRates(rows,query,scope='common'){const words=String(query).trim().toLowerCase().split(/\s+/).filter(Boolean);return rows.filter(row=>(scope!=='common'||row.code in COMMON_CURRENCIES)&&words.every(word=>(row.code+' '+currencyName(row.code)).toLowerCase().includes(word)))}
+export function dailyRatesText(rows){return rows.map(row=>{const figures=rateFigures(row);return `${currencyName(row.code)}（${row.code}）\n1 元人民币 ≈ ${figures.outward} ${row.code}\n100 ${row.code} ≈ ${figures.inward} 元人民币\n数据日期：${row.date}`}).join('\n\n')}

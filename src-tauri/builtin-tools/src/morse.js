@@ -1,0 +1,3 @@
+import {$,status,text,copyButton} from './common.js'
+import {MORSE,morseEncode,morseDecode} from './morse-data.js'
+export function mount({copyText}){const clear=()=>{$('output').value='';status('')};for(const[c,code]of Object.entries(MORSE)){const item=text('div','');item.append(text('strong',c),text('code',code));$('codes').append(item)}$('input').oninput=clear;for(const[id,fn]of [['encode',morseEncode],['decode',morseDecode]])$(id).onclick=()=>{try{$('output').value=fn($('input').value);status('已转换。')}catch(e){clear();status(e.message,true)}};$('swap').onclick=()=>{if(!$('output').value)return;$('input').value=$('output').value;clear()};$('clear').onclick=()=>{$('input').value='';clear()};copyButton('copy',()=>$('output').value,copyText)}

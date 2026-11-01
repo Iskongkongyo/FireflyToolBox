@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "update": {
+    "id": "release-0.1.70",
+    "enabled": false,
+    "show_once": true,
+    "title": "✨ 流萤百宝箱有新版本啦",
+    "content": "<h2>🎉 这次更新带来了什么？</h2><p>更顺手的工具，以及一些细节改善。</p><ul><li>在这里填写更新内容</li><li>支持 <strong>加粗</strong>、列表、图片和 Emoji 💚</li></ul><p>感谢你的陪伴喵！🐱</p>",
+    "version": "0.1.70",
+    "force": false,
+    "downloads": {
+      "windows": "https://example.com/firefly-toolbox-0.1.70.exe",
+      "android": "https://example.com/firefly-toolbox-0.1.70.apk"
+    }
+  },
+  "notification": {
+    "id": "notice-2026-10-28-1",
+    "enabled": false,
+    "show_once": true,
+    "title": "💌 给你的一封流萤来信",
+    "content": "<h2>你好呀 🌟</h2><p>这里可以发布使用提示、活动或维护通知。<br>每一条新通知都请使用新的 ID。</p><p><a href=\"https://github.com/Iskongkongyo/FireflyToolbox\">看看项目的新动态 🚀</a></p>"
+  }
+}

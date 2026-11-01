@@ -1,0 +1,73 @@
+{
+  "schema_version": 7,
+  "module_id": "dev.example.media_files",
+  "version": "1.0.0",
+  "api_version": "1",
+  "min_app_version": "0.1.57",
+  "name": {
+    "zh-CN": "媒体与大文件示例"
+  },
+  "author": "FireflyToolbox",
+  "license": "MIT",
+  "platforms": [
+    "windows",
+    "android"
+  ],
+  "permissions": [],
+  "network": {
+    "hosts": []
+  },
+  "limits": {
+    "input_bytes": 2147483648,
+    "output_bytes": 2147483648,
+    "timeout_ms": 15000,
+    "heap_bytes": 67108864
+  },
+  "resources": [
+    {
+      "path": "assets/add.wasm"
+    },
+    {
+      "path": "assets/compute.worker.js"
+    },
+    {
+      "path": "assets/check.svg"
+    }
+  ],
+  "tools": [
+    {
+      "id": "dev.example.media_files.main",
+      "name": {
+        "zh-CN": "媒体与大文件示例"
+      },
+      "description": {
+        "zh-CN": "包内 WASM 与 Worker、媒体预览、分块复制和 PCM WAV 截取"
+      },
+      "category": "开发示例",
+      "icon": "file",
+      "tags": [
+        "媒体",
+        "WASM",
+        "文件"
+      ],
+      "aliases": [],
+      "entry": "index.html",
+      "runtime": "browser",
+      "input_schema": null,
+      "output_schema": null,
+      "ui": {
+        "kind": "web",
+        "script": "main.js",
+        "style": "style.css"
+      },
+      "actions": [
+        {
+          "id": "open",
+          "label": {
+            "zh-CN": "打开工具"
+          }
+        }
+      ]
+    }
+  ]
+}

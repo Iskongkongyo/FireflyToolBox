@@ -1,0 +1,74 @@
+<div class="md2" id="md" data-theme="light">
+
+  <header class="mbar">
+    <button class="ib" id="md-menu" type="button" title="菜单：新建 / 打开 / 插入" aria-label="菜单"></button>
+
+    <div class="mtitle">
+      <input id="md-name" type="text" value="未命名.md" spellcheck="false" autocomplete="off" aria-label="文档名">
+      <span class="mdot" id="md-dot" hidden title="内容尚未写入草稿"></span>
+    </div>
+
+    <div class="sp"></div>
+
+    <div class="seg modes" id="md-mode" role="group" aria-label="版式">
+      <button type="button" data-v="split" title="分栏编辑 (Ctrl+1)"></button>
+      <button type="button" data-v="edit" title="仅编辑 (Ctrl+2)"></button>
+      <button type="button" data-v="prev" title="仅预览 (Ctrl+3)"></button>
+    </div>
+
+    <button class="ib" id="md-sync" type="button" title="同步滚动：开" aria-label="同步滚动"></button>
+    <button class="ib" id="md-aa" type="button" title="阅读字号与字体" aria-label="阅读字号与字体"><span class="aa">Aa</span></button>
+    <button class="ib wide" id="md-export" type="button">导出</button>
+  </header>
+
+  <div class="mmain" id="md-main">
+
+    <section class="mepane" id="md-epane">
+      <div class="mtool" id="md-tool" role="toolbar" aria-label="格式工具"></div>
+      <div class="mewrap">
+        <textarea class="mta" id="md-ta" spellcheck="false" autocomplete="off" wrap="soft"
+          placeholder="在这里写 Markdown……&#10;&#10;支持标题、列表、表格、代码块、任务清单与图片。&#10;Ctrl+B 粗体 · Ctrl+I 斜体 · Ctrl+S 保存 · Tab 缩进"></textarea>
+      </div>
+    </section>
+
+    <div class="msplit" id="md-split" role="separator" aria-orientation="vertical" tabindex="-1">
+      <span class="msplit-dot"></span>
+    </div>
+
+    <section class="mppane" id="md-ppane">
+      <div class="mprev" id="md-prev"></div>
+    </section>
+
+  </div>
+
+  <footer class="mstatus">
+    <span class="mstat-l" id="md-stat">0 字 · 0 行</span>
+    <span class="mstat-r" id="md-saved">草稿未保存</span>
+  </footer>
+
+  <div class="pop" id="md-pop" hidden role="menu"></div>
+
+  <dialog id="md-table-dialog" class="md-table-dialog" aria-labelledby="md-table-title">
+    <div id="md-table-form">
+      <h2 id="md-table-title">插入表格</h2>
+      <p>设置内容行数和列数，表头将另占一行。</p>
+      <div class="md-table-fields">
+        <label>内容行数<input id="md-table-rows" type="number" inputmode="numeric" min="1" max="100" step="1" value="2" required></label>
+        <label>列数<input id="md-table-cols" type="number" inputmode="numeric" min="1" max="20" step="1" value="3" required></label>
+      </div>
+      <p id="md-table-summary" class="md-table-summary" aria-live="polite"></p>
+      <p id="md-table-error" class="md-table-error" role="alert" hidden></p>
+      <footer class="macts"><button id="md-table-cancel" class="mbtn" type="button">取消</button><button id="md-table-insert" class="mbtn primary" type="button">插入表格</button></footer>
+    </div>
+  </dialog>
+
+  <div class="mshade" id="md-shade" hidden>
+    <div class="mcard" role="dialog" aria-modal="true" aria-labelledby="md-qt">
+      <p class="mq" id="md-qt">确定要这样做吗？</p>
+      <div class="macts">
+        <button class="mbtn" id="md-cancel" type="button">取消</button>
+        <button class="mbtn primary" id="md-ok" type="button">确定</button>
+      </div>
+    </div>
+  </div>
+</div>

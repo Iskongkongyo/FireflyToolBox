@@ -1,0 +1,65 @@
+{
+  "schema_version": 7,
+  "module_id": "dev.example.image_adjust",
+  "version": "1.0.0",
+  "api_version": "1",
+  "min_app_version": "0.1.57",
+  "name": {
+    "zh-CN": "图片处理示例"
+  },
+  "author": "FireflyToolbox",
+  "license": "MIT",
+  "platforms": [
+    "windows",
+    "android"
+  ],
+  "permissions": [],
+  "network": {
+    "hosts": []
+  },
+  "limits": {
+    "input_bytes": 8388608,
+    "output_bytes": 4194304,
+    "timeout_ms": 15000,
+    "heap_bytes": 67108864
+  },
+  "tools": [
+    {
+      "id": "dev.example.image_adjust.main",
+      "name": {
+        "zh-CN": "图片亮度处理"
+      },
+      "description": {
+        "zh-CN": "选择图片，调整亮度和灰度，预览并保存 PNG"
+      },
+      "category": "图片工具",
+      "tags": [
+        "图片",
+        "亮度",
+        "灰度",
+        "PNG"
+      ],
+      "aliases": [
+        "image adjust"
+      ],
+      "entry": "index.html",
+      "runtime": "browser",
+      "input_schema": null,
+      "output_schema": null,
+      "ui": {
+        "kind": "web",
+        "script": "main.js",
+        "style": "style.css"
+      },
+      "actions": [
+        {
+          "id": "open",
+          "label": {
+            "zh-CN": "打开工具"
+          }
+        }
+      ]
+    }
+  ],
+  "resources": []
+}
